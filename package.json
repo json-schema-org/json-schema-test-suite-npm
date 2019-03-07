@@ -1,0 +1,19 @@
+{
+  "name": "json-schema-test-suite",
+  "version": "1.0.0",
+  "description": "A set of JSON objects that implementors of JSON Schema validation libraries can use to test their validators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/json-schema-org/json-schema-test-suite-npm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/json-schema-org/json-schema-test-suite-npm/issues"
+  },
+  "homepage": "https://github.com/json-schema-org/json-schema-test-suite-npm#readme"
+}
