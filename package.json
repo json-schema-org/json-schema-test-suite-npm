@@ -1,10 +1,11 @@
 {
-  "name": "json-schema-test-suite",
+  "name": "@json-schema-org/tests",
   "version": "1.0.0",
   "description": "A set of JSON objects that implementors of JSON Schema validation libraries can use to test their validators",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint && mocha lib/index.spec.js -R spec",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/json-schema-org/json-schema-test-suite-npm/issues"
   },
-  "homepage": "https://github.com/json-schema-org/json-schema-test-suite-npm#readme"
+  "homepage": "https://github.com/json-schema-org/json-schema-test-suite-npm#readme",
+  "devDependencies": {
+    "ajv": "^6.10.0",
+    "assert": "^1.4.1",
+    "glob": "^7.1.3",
+    "json-schema-test": "^2.0.0",
+    "mocha": "^6.0.2",
+    "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "json-schema-test-suite": "github:json-schema-org/JSON-Schema-Test-Suite#8982b0b"
+  }
 }
