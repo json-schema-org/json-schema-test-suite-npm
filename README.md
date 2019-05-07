@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm.svg?branch=master)](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm)
+
 For Node.js Developers
 ======================
 
