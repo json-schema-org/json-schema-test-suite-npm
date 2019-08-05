@@ -1,41 +1,47 @@
-[![Build Status](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm.svg?branch=master)](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm)
-
-For Node.js Developers
+@json-schema-org/tests
 ======================
+
+NPM / node.js-specific support for the [JSON Schema test suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite)
+
+[![Build Status](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm.svg?branch=master)](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm)
 
 The JSON Schema Test Suite is meant to be a language agnostic test suite for testing JSON Schema validation libraries.
 It is generally added to projects as a git submodule. However, to simplify things for Node.js developers, the test suite has also
 been made available as an npm package.
 
-    npm install @json-schema-org/tests
+```sh
+npm install @json-schema-org/tests
+```
 
 ### Usage:
 
 There are a number of ways to load tests from the suite:
 
-    const testSuite = require('@json-schema-org/tests');
+```js
+const testSuite = require('@json-schema-org/tests');
 
-    // this will load all (required and optional) draft6 tests
-    const tests = testSuite.loadSync();
+// this will load all (required and optional) draft6 tests
+const tests = testSuite.loadSync();
 
-    // optional `filter` is a function that takes 3 arguments (filename, parent, optional)
-    // and returns true if the test should be included. The optional argument is true
-    // for all files under the `<draft>/optional` directory.
-    // optional `draft` should be either `'draft3'`, `'draft4'` or `'draft6'`
+// optional `filter` is a function that takes 3 arguments (filename, parent, optional)
+// and returns true if the test should be included. The optional argument is true
+// for all files under the `<draft>/optional` directory.
+// optional `draft` should be either `'draft3'`, `'draft4'` or `'draft6'`
 
-    const tests = testSuite.loadSync(filter, draft);
+const tests = testSuite.loadSync(filter, draft);
 
-    // convenience functions:
+// convenience functions:
 
-    // The following take an optional `filter` as described previously (undefined will load all tests)
-    const draft3 = testSuite.draft3();
-    const draft4 = testSuite.draft4();
-    const draft6 = testSuite.draft6();
+// The following take an optional `filter` as described previously (undefined will load all tests)
+const draft3 = testSuite.draft3();
+const draft4 = testSuite.draft4();
+const draft6 = testSuite.draft6();
 
-    // The following take an optional `draft` argument (defaults to 'draft6')
-    const all = testSuite.loadAllSync();
-    const required = testSuite.loadRequiredSync();
-    const optional = testSuite.loadOptionalSync();
+// The following take an optional `draft` argument (defaults to 'draft6')
+const all = testSuite.loadAllSync();
+const required = testSuite.loadRequiredSync();
+const optional = testSuite.loadOptionalSync();
+```
 
 
 The return value of these functions is an array of objects that correspond to each file under `tests/<draft>` that
@@ -43,7 +49,7 @@ passed the filter (the default is all, so the array will also include all the op
 
 Each object has the following structure (using `tests/draft4/additionalItems.json` as an example):
 
-```
+```js
 {
   name:    'additionalItems',
   file:     'additionalItems.json',
@@ -55,7 +61,7 @@ Each object has the following structure (using `tests/draft4/additionalItems.jso
 The `schemas` property contains the array of objects loaded from the test file.
 Each object consists of a schema and description, along with a number of tests used for validation. Using the first schema object in the array from `tests/draft4/additionalItems.json` as an example:
 
-```
+```js
 {
   description: 'additionalItems as schema',
   schema: {
@@ -85,14 +91,15 @@ The following are examples of `Tiny Validator (tv4)` and `z-schema` validator fa
 
 
 #### tv4
-```
-var tv4 = require('tv4');
 
-var tv4Factory = function (schema, options) {
+```js
+const tv4 = require('tv4');
+
+const tv4Factory = function (schema, options) {
   return {
     validate: function (json) {
       try {
-        var valid = tv4.validate(json, schema);
+        const valid = tv4.validate(json, schema);
         return valid ? { valid: true } : { valid: false, errors: [ tv4.error ] };
       } catch (err) {
         return { valid: false, errors: [err.message] };
@@ -104,16 +111,16 @@ var tv4Factory = function (schema, options) {
 
 #### ZSchema
 
-```
-var ZSchema = require('z-schema');
+```js
+const ZSchema = require('z-schema');
 
-var zschemaFactory = function (schema, options) {
-  var zschema = new ZSchema(options);
+const zschemaFactory = function (schema, options) {
+  const zschema = new ZSchema(options);
 
   return {
     validate: function (json) {
       try {
-        var valid = zschema.validate(json, schema);
+        const valid = zschema.validate(json, schema);
         return valid ? { valid: true } : { valid: false, errors: zschema.getLastErrors() };
       } catch (err) {
         return { valid: false, errors: [err.message] };
@@ -127,15 +134,15 @@ var zschemaFactory = function (schema, options) {
 
 Using a validator factory as described above, you can test it as follows.
 
-```
-var testSuite = require('json-schema-test-suite');
+```js
+const testSuite = require('json-schema-test-suite');
 
-var tests = testSuite.testSync(factory);
+const tests = testSuite.testSync(factory);
 ```
 
 The `tests` return value is as described previously in the Usage section, with an additional property for each test object that corresponds to the test result:
 
-```
+```js
 {
   description: 'additionalItems as schema',
   schema: {
@@ -164,15 +171,10 @@ The `tests` return value is as described previously in the Usage section, with a
 }
 ```
 
-### Unit Tests
+### Tests
 
-You can run mocha unit tests from a clone of the repo or browse the unit test source [here](https://github.com/atomiqio/JSON-Schema-Test-Suite/blob/node/test/test.js) for examples using both [tv4](https://github.com/geraintluff/tv4) and [z-schema](https://github.com/zaggino/z-schema).
+You can run the tests by doing:
 
-    npm install
-    npm test
-
-### Generating JSON Schema
-
-[json-schema-builder](https://github.com/atomiqio/json-schema-builder) is a
-fluent JavaScript API for generating syntactically correct JSON Schema that
-provides an alternative to writing JSON Schema documents by hand.
+```sh
+npm test
+```
