@@ -1,6 +1,6 @@
 {
   "name": "@json-schema-org/tests",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A set of JSON objects that implementors of JSON Schema validation libraries can use to test their validators",
   "main": "lib/index.js",
   "scripts": {
@@ -26,6 +26,6 @@
     "standard": "^12.0.1"
   },
   "dependencies": {
-    "json-schema-test-suite": "github:json-schema-org/JSON-Schema-Test-Suite#8982b0b"
+    "json-schema-test-suite": "github:json-schema-org/JSON-Schema-Test-Suite#0a0f0cd"
   }
 }
