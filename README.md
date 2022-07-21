@@ -4,6 +4,8 @@
 [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![Financial Contributors on Open Collective](https://opencollective.com/json-schema/all/badge.svg?label=financial+contributors)](https://opencollective.com/json-schema) 
 
+**This repository is archived due to needing maintainers who can help keep it up to date. If you are interested in helping, please reach out (via an issue or Slack).**
+
 NPM / node.js-specific support for the [JSON Schema test suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite)
 
 [![Build Status](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm.svg?branch=master)](https://travis-ci.org/json-schema-org/json-schema-test-suite-npm)
